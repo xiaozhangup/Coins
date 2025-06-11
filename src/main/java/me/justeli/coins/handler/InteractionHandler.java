@@ -12,18 +12,15 @@ import org.bukkit.event.player.PlayerInteractEvent;
 
 /* Eli @ February 4, 2017 (creation) */
 public final class InteractionHandler
-    implements Listener
-{
+    implements Listener {
     private final Coins coins;
 
-    public InteractionHandler (Coins coins)
-    {
+    public InteractionHandler(Coins coins) {
         this.coins = coins;
     }
 
     @EventHandler
-    public void onPlayerInteract (PlayerInteractEvent event)
-    {
+    public void onPlayerInteract(PlayerInteractEvent event) {
         if (event.getAction() == Action.PHYSICAL)
             return;
 
@@ -33,14 +30,12 @@ public final class InteractionHandler
         Player player = event.getPlayer();
 
         // because of .setAmount(0) AND Container, players have to drop coin instead
-        if (!player.hasPermission(PermissionNode.WITHDRAW))
-        {
+        if (!player.hasPermission(PermissionNode.WITHDRAW)) {
             event.setCancelled(true);
             return;
         }
 
-        if (event.getClickedBlock() == null || !(event.getClickedBlock().getState() instanceof Container))
-        {
+        if (event.getClickedBlock() == null || !(event.getClickedBlock().getState() instanceof Container)) {
             event.setCancelled(true);
             double amount = this.coins.getCoinUtil().getValue(event.getItem());
 

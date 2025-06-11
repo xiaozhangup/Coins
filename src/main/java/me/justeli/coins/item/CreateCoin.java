@@ -8,19 +8,15 @@ import org.bukkit.inventory.ItemStack;
 import java.util.SplittableRandom;
 
 /* Eli @ January 30, 2022 (creation) */
-public final class CreateCoin
-{
+public final class CreateCoin {
+    private static final SplittableRandom SPLITTABLE_RANDOM = new SplittableRandom();
     private final Coins coins;
 
-    public CreateCoin (Coins coins)
-    {
+    public CreateCoin(Coins coins) {
         this.coins = coins;
     }
 
-    private static final SplittableRandom SPLITTABLE_RANDOM = new SplittableRandom();
-
-    public ItemStack withdrawn (double worth)
-    {
+    public ItemStack withdrawn(double worth) {
         String name = Util.formatAmountAndCurrency(worth == 1
             ? Config.WITHDRAWN_COIN_NAME_SINGULAR
             : Config.WITHDRAWN_COIN_NAME_PLURAL, worth);
@@ -28,24 +24,20 @@ public final class CreateCoin
         return this.coins.getBaseCoin().withdrawn().data(CoinUtil.COINS_WORTH, worth).name(name).build();
     }
 
-    private MetaBuilder rawDropped ()
-    {
+    private MetaBuilder rawDropped() {
         MetaBuilder coin = this.coins.getBaseCoin().dropped();
 
-        if (Config.DROP_EACH_COIN || !Config.STACK_COINS)
-        {
+        if (Config.DROP_EACH_COIN || !Config.STACK_COINS) {
             return coin.data(CoinUtil.COINS_RANDOM, SPLITTABLE_RANDOM.nextInt());
         }
         return coin;
     }
 
-    public ItemStack dropped ()
-    {
+    public ItemStack dropped() {
         return rawDropped().build();
     }
 
-    public ItemStack dropped (double increment)
-    {
+    public ItemStack dropped(double increment) {
         if (increment == 1)
             return dropped();
 
@@ -53,8 +45,7 @@ public final class CreateCoin
         return coin.build();
     }
 
-    public MetaBuilder other ()
-    {
+    public MetaBuilder other() {
         return this.coins.getBaseCoin().other();
     }
 }

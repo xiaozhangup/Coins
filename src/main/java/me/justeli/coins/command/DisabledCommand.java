@@ -14,29 +14,24 @@ import java.util.Set;
 
 /* Eli @ August 2, 2021 (creation) */
 public final class DisabledCommand
-    implements CommandExecutor
-{
+    implements CommandExecutor {
     private final Coins coins;
     private final Set<PluginCommand> commands = new HashSet<>();
 
-    public DisabledCommand (Coins coins)
-    {
+    public DisabledCommand(Coins coins) {
         this.coins = coins;
         this.commands.add(coins.getCommand("coins"));
         this.commands.add(coins.getCommand("withdraw"));
     }
 
-    public Set<PluginCommand> commands ()
-    {
+    public Set<PluginCommand> commands() {
         return commands;
     }
 
     @Override
-    public boolean onCommand (@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args)
-    {
+    public boolean onCommand(@NotNull CommandSender sender, @NotNull Command cmd, @NotNull String label, @NotNull String[] args) {
         sender.sendMessage(Message.DISABLED_REASONS.toString());
-        for (String message : this.coins.disabledReasons())
-        {
+        for (String message : this.coins.disabledReasons()) {
             sender.sendMessage(Util.color("- &c" + message));
         }
         return true;

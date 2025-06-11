@@ -111,7 +111,7 @@ sound-volume: 0.50
 # List all worlds that you want Coins to be disabled in. World names are
 #  case-sensitive! Example for disabling two worlds called 'creative' and 'plots':
 #  disabledWorlds: [plots, creative]
-disabled-worlds: []
+disabled-worlds: [ ]
 
 # Allow players to change the name of coins. Changing the names of coins does not
 #  make it lose its value.

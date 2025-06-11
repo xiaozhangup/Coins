@@ -7,52 +7,35 @@ plugins {
     `maven-publish`
 }
 
-repositories {
-    mavenLocal()
-    maven {
-        url = uri("https://hub.spigotmc.org/nexus/content/repositories/snapshots/")
-    }
-
-    maven {
-        url = uri("https://libraries.minecraft.net/")
-    }
-
-    maven {
-        url = uri("https://jitpack.io")
-    }
-
-    maven {
-        url = uri("https://papermc.io/repo/repository/maven-public/")
-    }
-
-    maven {
-        url = uri("https://mvn.lumine.io/repository/maven-public/")
-    }
-
-    maven {
-        url = uri("https://repo.maven.apache.org/maven2/")
-    }
-}
-
-dependencies {
-    api(libs.io.papermc.paperlib)
-    compileOnly(libs.org.spigotmc.spigot.api)
-    compileOnly(libs.io.papermc.paper.paper.api)
-    compileOnly(libs.com.github.milkbowl.vaultapi)
-    compileOnly(libs.com.mojang.authlib)
-    compileOnly(libs.io.lumine.mythic.dist)
-    compileOnly(libs.org.bstats.bstats.bukkit)
-}
-
 group = "me.justeli.coins"
 version = "b1.13.2"
 description = "Coins"
-java.sourceCompatibility = JavaVersion.VERSION_16
+java.sourceCompatibility = JavaVersion.VERSION_21
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven("https://libraries.minecraft.net/")
+    maven("https://jitpack.io")
+    maven("https://repo.papermc.io/repository/maven-public/")
+}
+
+dependencies {
+    compileOnly("me.xiaozhangup.octopus:octopus-api:1.21.4-R0.1-SNAPSHOT")
+    compileOnly("com.github.MilkBowl:VaultAPI:1.7") {
+        exclude(group = "org.bukkit", module = "bukkit")
+    }
+    compileOnly("com.mojang:authlib:1.5.21")
+}
 
 publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
     }
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(21))
 }
 
 tasks.withType<JavaCompile>() {

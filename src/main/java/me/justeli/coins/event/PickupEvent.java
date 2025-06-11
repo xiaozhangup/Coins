@@ -10,55 +10,45 @@ import org.jetbrains.annotations.NotNull;
 /* Eli @ September 13, 2020 (creation) */
 public final class PickupEvent
     extends Event
-    implements Cancellable
-{
+    implements Cancellable {
+    private static final HandlerList HANDLERS = new HandlerList();
     private final Player player;
     private final Item item;
+    private boolean cancelled;
 
-    public PickupEvent (Player player, Item item)
-    {
+    public PickupEvent(Player player, Item item) {
         this.player = player;
         this.item = item;
     }
 
-    public Player getPlayer ()
-    {
+    // -- Cancellable --
+
+    public static HandlerList getHandlerList() {
+        return HANDLERS;
+    }
+
+    public Player getPlayer() {
         return player;
     }
 
-    public Item getItem ()
-    {
+    public Item getItem() {
         return item;
-    }
-
-    // -- Cancellable --
-
-    private boolean cancelled;
-
-    @Override
-    public boolean isCancelled ()
-    {
-        return cancelled;
-    }
-
-    @Override
-    public void setCancelled (boolean cancel)
-    {
-        this.cancelled = cancel;
     }
 
     // -- HandlerList --
 
-    private static final HandlerList HANDLERS = new HandlerList();
-
-    @NotNull
-    public HandlerList getHandlers ()
-    {
-        return HANDLERS;
+    @Override
+    public boolean isCancelled() {
+        return cancelled;
     }
 
-    public static HandlerList getHandlerList ()
-    {
+    @Override
+    public void setCancelled(boolean cancel) {
+        this.cancelled = cancel;
+    }
+
+    @NotNull
+    public HandlerList getHandlers() {
         return HANDLERS;
     }
 }

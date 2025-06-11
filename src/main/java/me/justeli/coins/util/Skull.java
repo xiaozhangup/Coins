@@ -11,14 +11,12 @@ import java.util.HashMap;
 import java.util.UUID;
 
 /* Eli @ January 6, 2020 (creation) */
-public final class Skull
-{
+public final class Skull {
     private static final HashMap<String, ItemStack> COIN = new HashMap<>();
     private static final UUID SKULL_UUID = UUID.fromString("00000001-0001-0001-0001-000000000002");
     private static final ItemStack SKULL_ITEM = new ItemStack(Material.PLAYER_HEAD);
 
-    public static ItemStack of (String texture)
-    {
+    public static ItemStack of(String texture) {
         if (texture == null || texture.isEmpty())
             return null;
 
@@ -32,24 +30,18 @@ public final class Skull
 
         Field profileField;
 
-        try
-        {
+        try {
             profileField = skullMeta.getClass().getDeclaredField("profile");
-        }
-        catch (NoSuchFieldException | SecurityException | NullPointerException e)
-        {
+        } catch (NoSuchFieldException | SecurityException | NullPointerException e) {
             e.printStackTrace();
             return SKULL_ITEM;
         }
 
         profileField.setAccessible(true);
 
-        try
-        {
+        try {
             profileField.set(skullMeta, profile);
-        }
-        catch (IllegalArgumentException | IllegalAccessException e)
-        {
+        } catch (IllegalArgumentException | IllegalAccessException e) {
             e.printStackTrace();
         }
 

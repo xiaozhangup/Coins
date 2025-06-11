@@ -4,8 +4,8 @@ version: '${project.version}'
 website: '${project.url}'
 description: '${project.description}'
 api-version: '1.17'
-authors: [JustEli]
-softdepend: [Vault, WorldGuard, mcMMO, MythicMobs]
+authors: [ JustEli ]
+softdepend: [ Vault, WorldGuard ]
 libraries:
   - org.bstats:bstats-bukkit:3.0.2
 commands:

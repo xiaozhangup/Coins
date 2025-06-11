@@ -3,8 +3,7 @@ package me.justeli.coins.config;
 import java.util.HashMap;
 
 /* Eli @ April 24, 2017 (creation) */
-public enum Message
-{
+public enum Message {
     NO_PERMISSION,
     RELOAD_SUCCESS,
     MINOR_ISSUES,
@@ -24,7 +23,7 @@ public enum Message
     INVALID_RADIUS,
 
     DROP_USAGE,
-    REMOVE_USAGE ,
+    REMOVE_USAGE,
     SETTINGS_USAGE,
     RELOAD_USAGE,
     VERSION_CHECK,
@@ -51,16 +50,13 @@ public enum Message
     static final HashMap<Message, String> MESSAGES = new HashMap<>();
 
     @Override
-    public String toString ()
-    {
+    public String toString() {
         return MESSAGES.computeIfAbsent(this, empty -> "Error while retrieving message");
     }
 
-    public String replace (CharSequence... replacements)
-    {
+    public String replace(CharSequence... replacements) {
         String message = toString();
-        for (int i = 0; i < replacements.length; i++)
-        {
+        for (int i = 0; i < replacements.length; i++) {
             message = message.replace("{" + i + "}", replacements[i].toString());
         }
         return message;

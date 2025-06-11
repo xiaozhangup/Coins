@@ -7,56 +7,48 @@ import org.bukkit.persistence.PersistentDataType;
 import java.util.Optional;
 
 /* Eli @ January 30, 2022 (creation) */
-public final class CoinUtil
-{
-    private final Coins coins;
-
-    public CoinUtil (Coins coins)
-    {
-        this.coins = coins;
-    }
+public final class CoinUtil {
+    public static final String COINS_TYPE = "coins-type"; // 1 = dropped, 2 = withdrawn, 3 = other
+    public static final int TYPE_DROPPED = 1;
 
     // three types of tags:
     //  - coins-type:       Integer  TYPE_DROPPED, TYPE_WITHDRAWN, TYPE_OTHER
     //  - coins-worth:      Double   coin worth if not random amount
     //  - coins-random:     Integer  a random number prevents item to stack
     //  - coins-increment:  Double   looting or fortune coin value increment
-
-    public static final String COINS_TYPE = "coins-type"; // 1 = dropped, 2 = withdrawn, 3 = other
-    public static final int TYPE_DROPPED = 1;
     public static final int TYPE_WITHDRAWN = 2;
     public static final int TYPE_OTHER = 3;
-
     public static final String COINS_WORTH = "coins-worth";
     public static final String COINS_RANDOM = "coins-random";
     public static final String COINS_INCREMENT = "coins-increment";
+    private final Coins coins;
 
-    public boolean isCoin (ItemStack item)
-    {
+    public CoinUtil(Coins coins) {
+        this.coins = coins;
+    }
+
+    public boolean isCoin(ItemStack item) {
         if (item == null)
             return false;
 
         return this.coins.meta(item).data(COINS_TYPE, PersistentDataType.INTEGER).isPresent();
     }
 
-    public boolean isDroppedCoin (ItemStack item)
-    {
+    public boolean isDroppedCoin(ItemStack item) {
         if (item == null)
             return false;
 
         return this.coins.meta(item).data(COINS_TYPE, PersistentDataType.INTEGER).orElse(0) == TYPE_DROPPED;
     }
 
-    public boolean isWithdrawnCoin (ItemStack item)
-    {
+    public boolean isWithdrawnCoin(ItemStack item) {
         if (item == null)
             return false;
 
         return this.coins.meta(item).data(COINS_TYPE, PersistentDataType.INTEGER).orElse(0) == TYPE_WITHDRAWN;
     }
 
-    public double getValue (ItemStack item)
-    {
+    public double getValue(ItemStack item) {
         if (item == null)
             return 0;
 
@@ -65,8 +57,7 @@ public final class CoinUtil
 
     }
 
-    public double getIncrement (ItemStack item)
-    {
+    public double getIncrement(ItemStack item) {
         return this.coins.meta(item).data(COINS_INCREMENT, PersistentDataType.DOUBLE).orElse(1D);
     }
 }

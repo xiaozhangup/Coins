@@ -12,49 +12,38 @@ import org.bukkit.event.entity.EntityTransformEvent;
 import org.bukkit.persistence.PersistentDataType;
 
 public final class UnfairMobHandler
-    implements Listener
-{
+    implements Listener {
     private final NamespacedKey slimeSplit;
     private final NamespacedKey spawnerMob;
 
-    public UnfairMobHandler (Coins coins)
-    {
+    public UnfairMobHandler(Coins coins) {
         this.slimeSplit = new NamespacedKey(coins, "coins-slime-split");
         this.spawnerMob = new NamespacedKey(coins, "coins-spawner-mob");
     }
 
     @EventHandler
-    public void onCreatureSpawn (CreatureSpawnEvent event)
-    {
-        if (event.getSpawnReason() == SpawnReason.SPAWNER || event.getEntityType() == EntityType.CAVE_SPIDER)
-        {
+    public void onCreatureSpawn(CreatureSpawnEvent event) {
+        if (event.getSpawnReason() == SpawnReason.SPAWNER || event.getEntityType() == EntityType.CAVE_SPIDER) {
             event.getEntity().getPersistentDataContainer().set(this.spawnerMob, PersistentDataType.INTEGER, 1);
-        }
-        else if (event.getSpawnReason() == SpawnReason.SLIME_SPLIT)
-        {
+        } else if (event.getSpawnReason() == SpawnReason.SLIME_SPLIT) {
             event.getEntity().getPersistentDataContainer().set(this.slimeSplit, PersistentDataType.INTEGER, 1);
         }
     }
 
     @EventHandler
-    public void onEntityTransformEvent (EntityTransformEvent event)
-    {
-        if (fromSpawner(event.getEntity()))
-        {
-            for (Entity entity : event.getTransformedEntities())
-            {
+    public void onEntityTransformEvent(EntityTransformEvent event) {
+        if (fromSpawner(event.getEntity())) {
+            for (Entity entity : event.getTransformedEntities()) {
                 entity.getPersistentDataContainer().set(this.spawnerMob, PersistentDataType.INTEGER, 1);
             }
         }
     }
 
-    public boolean fromSplit (Entity entity)
-    {
+    public boolean fromSplit(Entity entity) {
         return entity.getPersistentDataContainer().has(this.slimeSplit, PersistentDataType.INTEGER);
     }
 
-    public boolean fromSpawner (Entity entity)
-    {
+    public boolean fromSpawner(Entity entity) {
         return entity.getPersistentDataContainer().has(this.spawnerMob, PersistentDataType.INTEGER);
     }
 }

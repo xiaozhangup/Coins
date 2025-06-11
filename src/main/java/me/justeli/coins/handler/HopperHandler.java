@@ -9,18 +9,15 @@ import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.ItemStack;
 
 public final class HopperHandler
-    implements Listener
-{
+    implements Listener {
     private final Coins coins;
 
-    public HopperHandler (Coins coins)
-    {
+    public HopperHandler(Coins coins) {
         this.coins = coins;
     }
 
-    @EventHandler (ignoreCancelled = true)
-    public void onInventoryPickupItem (InventoryPickupItemEvent event)
-    {
+    @EventHandler(ignoreCancelled = true)
+    public void onInventoryPickupItem(InventoryPickupItemEvent event) {
         if (!Config.DISABLE_HOPPERS)
             return;
 

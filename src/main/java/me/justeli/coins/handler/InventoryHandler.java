@@ -10,18 +10,15 @@ import org.bukkit.inventory.ItemStack;
 
 /* Eli @ May 2, 2019 (creation) */
 public final class InventoryHandler
-    implements Listener
-{
+    implements Listener {
     private final Coins coins;
 
-    public InventoryHandler (Coins coins)
-    {
+    public InventoryHandler(Coins coins) {
         this.coins = coins;
     }
 
-    @EventHandler (ignoreCancelled = true)
-    public void onInventoryClick (InventoryClickEvent event)
-    {
+    @EventHandler(ignoreCancelled = true)
+    public void onInventoryClick(InventoryClickEvent event) {
         if (Util.isDisabledHere(event.getWhoClicked().getWorld()))
             return;
 

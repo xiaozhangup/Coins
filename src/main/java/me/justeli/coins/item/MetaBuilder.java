@@ -13,28 +13,24 @@ import java.util.logging.Level;
 
 /* Eli @ January 30, 2022 (creation) */
 public final class MetaBuilder
-    implements Cloneable
-{
+    implements Cloneable {
     private final Coins coins;
 
     private final ItemStack itemStack;
     private final ItemMeta itemMeta;
 
-    public MetaBuilder (Coins coins, ItemStack itemStack)
-    {
+    public MetaBuilder(Coins coins, ItemStack itemStack) {
         this.coins = coins;
         this.itemStack = itemStack;
         this.itemMeta = itemStack.getItemMeta();
     }
 
-    public MetaBuilder name (String name)
-    {
+    public MetaBuilder name(String name) {
         this.itemMeta.setDisplayName(Util.color(name));
         return this;
     }
 
-    public MetaBuilder data (String key, Integer value)
-    {
+    public MetaBuilder data(String key, Integer value) {
         this.itemMeta.getPersistentDataContainer().set(
             new NamespacedKey(this.coins, key),
             PersistentDataType.INTEGER, value
@@ -42,8 +38,7 @@ public final class MetaBuilder
         return this;
     }
 
-    public MetaBuilder data (String key, Double value)
-    {
+    public MetaBuilder data(String key, Double value) {
         this.itemMeta.getPersistentDataContainer().set(
             new NamespacedKey(this.coins, key),
             PersistentDataType.DOUBLE, value
@@ -51,8 +46,7 @@ public final class MetaBuilder
         return this;
     }
 
-    public <T> Optional<T> data (String key, @NotNull PersistentDataType<T, T> type)
-    {
+    public <T> Optional<T> data(String key, @NotNull PersistentDataType<T, T> type) {
         if (this.itemMeta == null)
             return Optional.empty();
 
@@ -61,22 +55,17 @@ public final class MetaBuilder
         ));
     }
 
-    public ItemStack build ()
-    {
+    public ItemStack build() {
         this.itemStack.setItemMeta(this.itemMeta);
         return this.itemStack;
     }
 
     @Override
-    public MetaBuilder clone ()
-    {
+    public MetaBuilder clone() {
         final MetaBuilder clone;
-        try
-        {
+        try {
             clone = (MetaBuilder) super.clone();
-        }
-        catch (CloneNotSupportedException ex)
-        {
+        } catch (CloneNotSupportedException ex) {
             this.coins.getLogger().log(Level.WARNING, ex.getMessage());
             return new MetaBuilder(this.coins, build().clone());
         }

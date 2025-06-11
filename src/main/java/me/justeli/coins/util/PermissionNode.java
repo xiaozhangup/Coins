@@ -1,8 +1,7 @@
 package me.justeli.coins.util;
 
 /* Eli @ February 10, 2022 (creation) */
-public final class PermissionNode
-{
+public final class PermissionNode {
     public static final String COMMAND_RELOAD = "coins.command.reload";
     public static final String COMMAND_SETTINGS = "coins.command.settings";
     public static final String COMMAND_DROP = "coins.command.drop";
@@ -16,8 +15,7 @@ public final class PermissionNode
 
     public static final String MULTIPLIER_PREFIX = "coins.multiplier.";
 
-    public static double multiplierFromPermission (String fromPermission)
-    {
+    public static double multiplierFromPermission(String fromPermission) {
         if (!fromPermission.startsWith(MULTIPLIER_PREFIX))
             return 1D;
 

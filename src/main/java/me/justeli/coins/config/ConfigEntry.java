@@ -6,13 +6,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /* Eli @ July 09, 2021 (creation) */
-@Retention (RetentionPolicy.RUNTIME)
-@Target (ElementType.FIELD)
-public @interface ConfigEntry
-{
-    String value ();
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.FIELD)
+public @interface ConfigEntry {
+    String value();
 
-    boolean required () default true;
+    boolean required() default true;
 
-    String motivation () default "";
+    String motivation() default "";
 }
