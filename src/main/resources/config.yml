@@ -241,16 +241,6 @@ max-withdraw-amount: 10000.00
 withdraw-message: '&4- &c{currency}{amount}'
 withdraw-message-position: 'actionbar' # other options: 'subtitle', 'title', 'chat'
 
-#  #  #  #  #
-#  Hooks    #
-#  #  #  #  #
-
-# MythicMobs :: In the config of MythicMobs you can define custom coin drops. Use
-#  the drop called 'coins' in the MythicMobs config to drop coins from this plugin.
-#  If you have set up custom drops in there, you probably also want to disable coin
-#  drops for Mythic Mobs handled by this plugin, under here.
-disable-mythic-mob-handling: false
-
 #  #  #  #  #  #  #
 #  Player Death   #
 #  #  #  #  #  #  #

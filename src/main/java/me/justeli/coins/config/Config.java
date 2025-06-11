@@ -45,8 +45,6 @@ public class Config {
     public static Boolean DROP_WITH_ANY_DEATH = false;
     @ConfigEntry("enchanted-coin")
     public static Boolean ENCHANTED_COIN = false;
-    @ConfigEntry("disable-mythic-mob-handling")
-    public static Boolean DISABLE_MYTHIC_MOB_HANDLING = false;
     @ConfigEntry("allow-name-change")
     public static Boolean ALLOW_NAME_CHANGE = false;
     @ConfigEntry("allow-modification")
