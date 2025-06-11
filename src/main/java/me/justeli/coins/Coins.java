@@ -6,7 +6,7 @@ import me.justeli.coins.command.WithdrawCommand;
 import me.justeli.coins.config.Config;
 import me.justeli.coins.config.Settings;
 import me.justeli.coins.handler.*;
-import me.justeli.coins.handler.listener.PaperEventListener;
+import me.justeli.coins.handler.PickupListener;
 import me.justeli.coins.hook.Economies;
 import me.justeli.coins.item.BaseCoin;
 import me.justeli.coins.item.CoinUtil;
@@ -155,7 +155,7 @@ public final class Coins
     private void registerEvents() {
         PluginManager manager = getServer().getPluginManager();
 
-        manager.registerEvents(new PaperEventListener(this), this);
+        manager.registerEvents(new PickupListener(this), this);
 
         this.unfairMobHandler = new UnfairMobHandler(this);
         this.pickupHandler = new PickupHandler(this);

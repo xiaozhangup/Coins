@@ -1,4 +1,4 @@
-package me.justeli.coins.handler.listener;
+package me.justeli.coins.handler;
 
 import me.justeli.coins.Coins;
 import me.justeli.coins.event.PickupEvent;
@@ -7,11 +7,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAttemptPickupItemEvent;
 
 /* Eli @ September 13, 2020 (creation) */
-public final class PaperEventListener
+public final class PickupListener
     implements Listener {
     private final Coins coins;
 
-    public PaperEventListener(Coins coins) {
+    public PickupListener(Coins coins) {
         this.coins = coins;
     }
 
