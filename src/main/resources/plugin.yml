@@ -1,8 +1,6 @@
-main: '${project.groupId}.${project.name}'
-name: '${project.name}'
-version: '${project.version}'
-website: '${project.url}'
-description: '${project.description}'
+main: 'me.justeli.coins.Coins'
+name: 'Coins'
+version: 'b1.13.2'
 api-version: '1.17'
 authors: [ JustEli ]
 softdepend: [ Vault, WorldGuard ]
