@@ -53,7 +53,7 @@ public final class DropHandler
         if (Util.isDisabledHere(dead.getWorld()))
             return;
 
-        if (Config.LOSE_ON_DEATH && dead instanceof Player) {
+        if (Config.LOSE_ON_DEATH && dead instanceof Player && !dead.hasPermission("coins.bypass.lose_on_death")) {
             loseOnDeathHandler((Player) dead);
         }
 
