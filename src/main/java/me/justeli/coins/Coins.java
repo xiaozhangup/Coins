@@ -8,6 +8,7 @@ import me.justeli.coins.config.Settings;
 import me.justeli.coins.handler.*;
 import me.justeli.coins.handler.PickupListener;
 import me.justeli.coins.hook.Economies;
+import me.justeli.coins.hook.Regions;
 import me.justeli.coins.item.BaseCoin;
 import me.justeli.coins.item.CoinUtil;
 import me.justeli.coins.item.CreateCoin;
@@ -51,6 +52,7 @@ public final class Coins
     private static final String LACKING_ECONOMY = "There is no proper economy installed. Please install %s.";
     private final List<String> disabledReasons = new ArrayList<>();
     private Economies economy;
+    private Regions regions;
     private VersionChecker.Version latestVersion;
     private boolean pluginDisabled = false;
     private BaseCoin baseCoin;
@@ -69,6 +71,8 @@ public final class Coins
         for (String missingPlugin : this.economy.getMissingPluginNames()) {
             noEconomySupport(missingPlugin);
         }
+
+        this.regions = new Regions(this);
 
         if (this.disabledReasons.isEmpty()) {
             this.settings = new Settings(this);
@@ -193,6 +197,10 @@ public final class Coins
 
     public Economies economy() {
         return this.economy;
+    }
+
+    public Regions regions() {
+        return this.regions;
     }
 
     public Optional<VersionChecker.Version> latestVersion() {

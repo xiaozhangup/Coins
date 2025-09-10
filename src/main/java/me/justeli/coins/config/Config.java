@@ -124,6 +124,8 @@ public class Config {
 
     @ConfigEntry("disabled-worlds")
     public static Set<String> DISABLED_WORLDS = new HashSet<>();
+    @ConfigEntry("ignore-regions")
+    public static Set<String> IGNORE_REGIONS = new HashSet<>();
     public static Map<Material, Integer> BLOCK_DROPS = new HashMap<>();
     public static Map<EntityType, Integer> MOB_MULTIPLIER = new HashMap<>();
     public static DecimalFormat DECIMAL_FORMATTER = new DecimalFormat();
