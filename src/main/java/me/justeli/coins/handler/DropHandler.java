@@ -5,6 +5,7 @@ import me.justeli.coins.config.Config;
 import me.justeli.coins.item.CoinUtil;
 import me.justeli.coins.util.PermissionNode;
 import me.justeli.coins.util.Util;
+import me.xiaozhangup.domain.poly.Poly;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -54,7 +55,10 @@ public final class DropHandler
             return;
 
         if (Config.LOSE_ON_DEATH && dead instanceof Player && !dead.hasPermission("coins.bypass.lose_on_death")) {
-            loseOnDeathHandler((Player) dead);
+            Poly poly = this.coins.regions().getRegion((Player) dead);
+            if (poly == null || !Config.IGNORE_REGIONS.contains(poly.getId())) {
+                loseOnDeathHandler((Player) dead);
+            }
         }
 
         if (Config.DROP_WITH_ANY_DEATH) {

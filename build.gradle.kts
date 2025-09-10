@@ -22,10 +22,11 @@ repositories {
 
 dependencies {
     compileOnly("me.xiaozhangup.octopus:octopus-api:1.21.4-R0.1-SNAPSHOT")
+    compileOnly("com.mojang:authlib:1.5.21")
+    compileOnly("me.xiaozhangup:OrangDomain:1.0.1")
     compileOnly("com.github.MilkBowl:VaultAPI:1.7") {
         exclude(group = "org.bukkit", module = "bukkit")
     }
-    compileOnly("com.mojang:authlib:1.5.21")
 }
 
 publishing {

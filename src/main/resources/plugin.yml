@@ -3,7 +3,7 @@ name: 'Coins'
 version: 'b1.13.2'
 api-version: '1.17'
 authors: [ JustEli ]
-softdepend: [ Vault, WorldGuard ]
+softdepend: [ Vault, WorldGuard, OrangDomain ]
 libraries:
   - org.bstats:bstats-bukkit:3.0.2
 commands:

@@ -248,6 +248,8 @@ withdraw-message-position: 'actionbar' # other options: 'subtitle', 'title', 'ch
 # Should players lose money on death? It shows a title (in the middle of the screen)
 #  how much they lost on death.
 lose-on-death: true
+ignore-regions:
+  - "combat"
 
 # If so, how much will be taken? A random amount between 10 and 30 by default.
 money-taken:
