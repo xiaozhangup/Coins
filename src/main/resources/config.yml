@@ -1,19 +1,36 @@
-# # # # # # # # # # # # # # # # # # # # # # # #
-#  Configuration for Coins 1.x  (by JustEli)  #
-# # # # # # # # # # # # # # # # # # # # # # # #
+#  +-------------------------------------------------+
+#  |    █████████            ███                     |
+#  |   ███░░░░░███          ░░░                      |
+#  |  ███     ░░░   ██████  ████  ████████    █████  |
+#  | ░███          ███░░███░░███░ ░███░░███  ███░░   |
+#  | ░███         ░███ ░███ ░███  ░███ ░███░ ░█████  |
+#  | ░░███     ███░███ ░███ ░███  ░███ ░███  ░░░░███ |
+#  |  ░░█████████ ░░██████  █████ ████ █████ ██████  |
+#  |   ░░░░░░░░░   ░░░░░░  ░░░░░░ ░░░ ░░░░░░ ░░░░░   |
+#  +-------------------------------- by JustEli -----+
+
+#  +---------------------+
+#  |   General           |
+#  +---------------------+
+
+# Coins v1 is a plugin that allows players to collect coins for killing mobs and mining
+#  precious blocks. It also comes with the ability to withdraw balance into physical
+#  coins. This plugin can be used for drop parties, and is highly configurable.
+# Coins v2 is an optimized plugin for defining custom coin variants and configuring drop
+#  chances for many different filtered events: https://www.spigotmc.org/resources/135074/
 # This config was generated for Coins version ${project.version}.
 
-# Support and donating
-# --------------------
-# Join the Discord support server at https://plugin.coins.community/discord. Make sure to
-#  read the FAQ (#coins-faq) first, before asking for support in #coins-general.
+#   Discord    https://plugin.coins.community/discord
+#   Wiki       https://github.com/justEli/Coins/wiki
+#   Donate     https://ko-fi.com/justeli
 
-# This project is entirely being developed in the spare time of the developer. If you like
-#  the plugin, consider donating at https://plugin.coins.community/.
+# Show a message to update the plugin on start-up, if the plugin is outdated.
+check-for-updates: true
 
+#  +---------------------+
+#  |   Formatting        |
+#  +---------------------+
 
-# Coloring and formatting
-# -----------------------
 # This plugin supports coloring of the minimessage format. This means that all color
 #  codes go in diamond brackets. Anything you see in diamond brackets is a defined color.
 #  Examples of this are <blue>, <minecoin_gold>, <#FFC512>, and <italic>. There are a
@@ -21,14 +38,6 @@
 #  'legacy' color codes (&-codes) are not supported. Please visit Coins' wiki page for
 #  more explanation and examples! And yes, <up>, <down> and <money> are also color codes.
 # Wiki: https://github.com/justEli/Coins/wiki/Formatting-messages-and-components
-
-
-#  #  #  #  #  #  #  #
-#  Misc & Language   #
-#  #  #  #  #  #  #  #
-
-# Show a message to update the plugin on start-up, if the plugin is outdated.
-check-for-updates: true
 
 # What language should the plugin use? All available languages can be found in the folder
 #  'locale' inside the plugin folder. And what is your server's currency symbol?
@@ -38,7 +47,7 @@ currency-symbol: '$'
 # This message is sent as action bar (bottom of a player's screen) by default, telling the
 #  player how much money they have picked up. The variable '{currency}' will be replaced
 #  by the configured value at 'currency-symbol'.
-# Color guide: See 'Coloring and formatting' at the top of the config.
+# Color guide: See 'Formatting' at the top of the config.
 pickup-message: '<up>↑ <money>{currency}{amount}'
 pickup-message-position: 'actionbar' # other options: 'subtitle', 'title', 'chat'
 
@@ -54,14 +63,14 @@ money-decimals: 2
 digit-decimal-separator: '.'
 digit-group-separator: ','
 
-#  #  #  #  #  #  #  #
-#  Coin Properties   #
-#  #  #  #  #  #  #  #
+#  +---------------------+
+#  |   Coin Properties   |
+#  +---------------------+
 
 # Here you can configure the names of dropped coins and withdrawn coins. Dropped coins
 #  only appear in hoppers, when that setting is enabled. Withdrawn coins come from
 #  /withdraw, and will only be of 'singular' when a withdrawn coin's worth is 1.
-# Color guide: See 'Coloring and formatting' at the top of the config.
+# Color guide: See 'Formatting' at the top of the config.
 dropped-coin-name: '<coins>Coin'
 withdrawn-coin-names:
   singular: '<var>{amount} <coins>Coin'
@@ -89,9 +98,9 @@ enchanted-coin: false
 # Wiki: https://github.com/justEli/Coins/wiki/Custom-model-data-coin-texture
 custom-model-data: 0
 
-#  #  #  #  #  #  #
-#  Coin Behavior  #
-#  #  #  #  #  #  #
+#  +---------------------+
+#  |   Coin Behavior     |
+#  +---------------------+
 
 # The amount of money one coin is worth. Creates a random number between 'from' and 'to'
 #  which - as money - will be given to the player on pickup.
@@ -143,9 +152,9 @@ allow-modification: false
 #  Fortune/Looting III = 15% coin increase.
 enchant-increment: 0.05
 
-#  #  #  #  #  #  #  #
-#  Coin Mob Drops    #
-#  #  #  #  #  #  #  #
+#  +---------------------+
+#  |   Coin Drops        |
+#  +---------------------+
 
 # Should hostile and passive mobs drop coins? Hostile mobs drop coins by default, and
 #  passive mobs don't. When set to false, the setting can be overridden by adding the
@@ -200,10 +209,6 @@ mob-multiplier:
 #  'coins.drop.split_mobs'.
 prevent-splits: true
 
-#  #  #  #  #  #  #  #  #
-#  Coin Player Drops    #
-#  #  #  #  #  #  #  #  #
-
 # When a player gets killed by another player, should coins drop? When set to false, this
 #  can be overridden by giving the permission 'coins.drop.players'.
 player-drop: true
@@ -213,10 +218,6 @@ player-drop: true
 #  killing, from the same computer, for unlimited money, unless you use this plugin for a
 #  local server.
 prevent-alts: true
-
-#  #  #  #  #  #  #  #
-#  Coin Block Drops  #
-#  #  #  #  #  #  #  #
 
 # Drop coins for mined blocks. This setting only works when the block drops a different
 #  item than the block itself. For example a Diamond Ore drops Diamond without Silk Touch.
@@ -248,9 +249,9 @@ block-drops:
 # What's the chance per mined block? Set to 0 to disable dropping coins for blocks.
 mine-percentage: 0.20
 
-#  #  #  #  #  #
-#  Withdraw    #
-#  #  #  #  #  #
+#  +---------------------+
+#  |   Withdraw          |
+#  +---------------------+
 
 # Let players use /withdraw to get physical coins that they can put somewhere. This allows
 #  players to store the coins physically, outside their balance. When a withdrawn coin is
@@ -260,13 +261,13 @@ enable-withdraw: true
 max-withdraw-amount: 10000.00
 
 # Tell the player how much money they have withdrawn.
-# Color guide: See 'Coloring and formatting' at the top of the config.
+# Color guide: See 'Formatting' at the top of the config.
 withdraw-message: '<coins>→ <money>{currency}{amount}'
 withdraw-message-position: 'actionbar' # other options: 'subtitle', 'title', 'chat'
 
-#  #  #  #  #
-#  Hooks    #
-#  #  #  #  #
+#  +---------------------+
+#  |   Hooks             |
+#  +---------------------+
 
 # MythicMobs :: In the config of MythicMobs you can define custom coin drops. Use the drop
 #  called 'coins' in the MythicMobs config to drop coins from this plugin. If you have set
@@ -274,9 +275,9 @@ withdraw-message-position: 'actionbar' # other options: 'subtitle', 'title', 'ch
 #  handled by this plugin, under here.
 disable-mythic-mob-handling: false
 
-#  #  #  #  #  #  #
-#  Player Death   #
-#  #  #  #  #  #  #
+#  +---------------------+
+#  |   Player Death      |
+#  +---------------------+
 
 # Should players lose money on death? It shows a message, configured at 'death-message'
 #  with how much they lost on death. This setting can be bypassed (when set to true) by
@@ -297,6 +298,6 @@ take-percentage: false
 drop-on-death: false
 
 # The format of the message in (the middle of, by default) their screen.
-# Color guide: See 'Coloring and formatting' at the top of the config.
+# Color guide: See 'Formatting' at the top of the config.
 death-message: '<down>↓ <money>{currency}{amount}'
 death-message-position: 'subtitle' # other options: 'actionbar', 'title', 'chat'
