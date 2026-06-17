@@ -6,7 +6,6 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryPickupItemEvent;
 import org.bukkit.event.inventory.InventoryType;
-import org.bukkit.inventory.ItemStack;
 
 /**
  * @author Eli
@@ -29,9 +28,13 @@ public final class HopperHandler implements Listener {
             return;
         }
 
-        ItemStack item = event.getItem().getItemStack();
-        if (!coins.getCoinMeta().isDroppedCoin(item)) {
-            return;
+        var item = event.getItem().getItemStack();
+        if (!coins.getCoinMeta().isCoin(item)) {
+            return; // no need to handle/cancel if item is not a coin
+        }
+
+        if (coins.getCoinMeta().isWithdrawnCoin(item)) {
+            return; // one exemption: withdrawn coins can still be picked up
         }
 
         event.setCancelled(true);
