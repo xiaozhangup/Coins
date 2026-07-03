@@ -1,7 +1,9 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
 plugins {
     java
     `maven-publish`
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow") version "9.4.3"
 }
 
 group = "me.justeli.coins"
@@ -12,6 +14,16 @@ val minecraftVersion = "1.21"
 val foliaVersion = "1.21.4"
 val adventurePlatformBukkitVersion = "4.4.1"
 val adventureVersion = "4.20.0"
+val resourceTokens = mapOf(
+    "project.groupId" to group.toString(),
+    "project.name" to name,
+    "project.version" to version.toString(),
+    "project.url" to "https://modrinth.com/plugin/coinsplugin",
+    "project.description" to description,
+    "versions.minecraft" to minecraftVersion,
+    "versions.adventure-platform-bukkit" to adventurePlatformBukkitVersion,
+    "versions.adventure" to adventureVersion,
+)
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
@@ -28,9 +40,9 @@ repositories {
 
 dependencies {
     compileOnly("dev.folia:folia-api:$foliaVersion-R0.1-SNAPSHOT")
-    compileOnly("org.spigotmc:spigot-api:$minecraftVersion-R0.1-SNAPSHOT")
-    compileOnly("io.papermc.paper:paper-api:$minecraftVersion-R0.1-SNAPSHOT")
-    compileOnly("com.github.MilkBowl:VaultAPI:1.7")
+    compileOnly("com.github.MilkBowl:VaultAPI:1.7") {
+        exclude(group = "org.bukkit", module = "bukkit")
+    }
     compileOnly("io.lumine:Mythic-Dist:5.11.2")
 
     implementation("org.bstats:bstats-bukkit:3.2.1")
@@ -47,20 +59,11 @@ tasks.withType<JavaCompile>().configureEach {
 
 tasks.processResources {
     filteringCharset = "UTF-8"
-    filesMatching("plugin.yml") {
-        expand(
-            "project" to mapOf(
-                "groupId" to project.group.toString(),
-                "name" to project.name,
-                "version" to project.version.toString(),
-                "url" to "https://modrinth.com/plugin/coinsplugin",
-                "description" to project.description,
-            ),
-            "versions" to mapOf(
-                "minecraft" to minecraftVersion,
-                "adventure-platform-bukkit" to adventurePlatformBukkitVersion,
-                "adventure" to adventureVersion,
-            ),
+    filesMatching(listOf("plugin.yml", "paper-plugin.yml", "config.yml")) {
+        filter<ReplaceTokens>(
+            "tokens" to resourceTokens,
+            "beginToken" to "\${",
+            "endToken" to "}",
         )
     }
 }
