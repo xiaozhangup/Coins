@@ -92,7 +92,8 @@ public final class DropHandler implements Listener {
             return;
         }
 
-        if (Config.LOSE_ON_DEATH && dead instanceof Player player && !Permissions.hasBypassLoseOnDeath(player)) {
+        if (Config.LOSE_ON_DEATH && dead instanceof Player player && !Permissions.hasBypassLoseOnDeath(player)
+            && coins.getRegions().isDroppableRegion(player)) {
             handleLosingOnDeath(player);
         }
 

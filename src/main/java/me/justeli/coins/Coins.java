@@ -18,6 +18,7 @@ import me.justeli.coins.handler.DropHandler;
 import me.justeli.coins.handler.listener.PaperEventListener;
 import me.justeli.coins.hook.bstats.Metrics;
 import me.justeli.coins.config.Settings;
+import me.justeli.coins.hook.Regions;
 import me.justeli.coins.hook.mythicmobs.MythicMobsHook;
 import me.justeli.coins.item.BaseCoin;
 import me.justeli.coins.hook.Economies;
@@ -69,6 +70,7 @@ public final class Coins extends JavaPlugin {
         // basic functionality
         this.scheduler = new Scheduler(this);
         this.messenger = new Messenger(this);
+        this.regions = new Regions();
 
         // economy provider
         this.economy = new Economies(this);
@@ -219,6 +221,11 @@ public final class Coins extends JavaPlugin {
     private Economies economy;
     public Economies getEconomy() {
         return economy;
+    }
+
+    private Regions regions;
+    public Regions getRegions() {
+        return regions;
     }
 
     private BaseCoin baseCoin;
