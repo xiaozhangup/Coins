@@ -7,6 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryType;
 
 /**
  * @author Eli
@@ -31,6 +32,10 @@ public final class InventoryHandler implements Listener {
         }
 
         if (!(event.getWhoClicked() instanceof Player player)) {
+            return;
+        }
+
+        if (event.getSlotType() == InventoryType.SlotType.RESULT) {
             return;
         }
 

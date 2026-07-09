@@ -14,6 +14,9 @@ dependencies:
     'MythicMobs':
       load: BEFORE
       required: false
+    'WhaleMechanism':
+      load: BEFORE
+      required: false
 permissions:
   'coins.command':
     default: true

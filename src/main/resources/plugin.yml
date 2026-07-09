@@ -5,7 +5,7 @@ website: '${project.url}'
 description: '${project.description}'
 api-version: '${versions.minecraft}'
 authors: [JustEli]
-softdepend: [Vault, MythicMobs, OrangDomain]
+softdepend: [Vault, MythicMobs, OrangDomain, WhaleMechanism]
 libraries:
   - 'net.kyori:adventure-platform-bukkit:${versions.adventure-platform-bukkit}'
   - 'net.kyori:adventure-text-minimessage:${versions.adventure}'
