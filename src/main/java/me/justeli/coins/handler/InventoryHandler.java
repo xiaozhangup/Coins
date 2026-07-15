@@ -46,7 +46,7 @@ public final class InventoryHandler implements Listener {
         event.setCancelled(true);
 
         double value = coins.getCoinMeta().getValue(event.getCurrentItem());
-        if (value > 0 && !coins.getCoinMeta().isWithdrawnCoin(event.getCurrentItem())) { // don't deposit withdrawn coins
+        if (value > 0) {
             coins.getPickupHandler().depositMoney(player, value);
         }
         else if (coins.getCoinMeta().isDroppedCoin(event.getCurrentItem())) {

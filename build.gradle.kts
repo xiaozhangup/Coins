@@ -4,6 +4,7 @@ plugins {
     java
     `maven-publish`
     id("com.gradleup.shadow") version "9.4.3"
+    id("me.xiaozhangup.sftp-uploader") version "0.1.0"
 }
 
 group = "me.justeli.coins"
@@ -83,4 +84,14 @@ publishing {
     publications.create<MavenPublication>("maven") {
         from(components["java"])
     }
+}
+
+sftpUploader {
+    host.set("xiaozhangup@s1.dimc.cloud")
+    target.set("Minecraft")
+    jars.set(
+        listOf(
+            layout.buildDirectory.file("libs/Coins-1.16.2.jar").get().asFile.absolutePath
+        )
+    )
 }

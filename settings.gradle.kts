@@ -3,3 +3,11 @@
  */
 
 rootProject.name = "Coins"
+
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
